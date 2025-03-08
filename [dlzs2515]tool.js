@@ -145,6 +145,21 @@ class AlertExt {
                     }
                 },
                 {
+                    opcode: 'have_this_data',
+                    blockType: Scratch.BlockType.BOOLEAN,
+                    text: '类名为[value_class]变量名为[value_name]是否存在?',
+                    arguments: {
+                        value_class: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: '项目标题'
+                        },
+                        value_name : {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: '玩家血量'
+                        }
+                    }
+                },
+                {
                     opcode: 'clear_data',
                     blockType: Scratch.BlockType.COMMAND,
                     text: '清除所有存储的数据',
@@ -227,6 +242,16 @@ class AlertExt {
         else 
         {
             return "";
+        }
+    }
+    have_this_data(args) {
+        if (`${args.value_class}.${args.value_name}`)
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
         }
     }
     clear_data(args) {
