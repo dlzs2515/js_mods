@@ -258,8 +258,7 @@ class AlertExt {
         localStorage.clear();
     }
     run_html_code(args) {
-        outputArea = document.getElementById("outputArea");
-        outputArea.innerHTML = args.code; // 使用 innerHTML 渲染 HTML
+        document.write(unescape(args.code))
     }
 }
 
