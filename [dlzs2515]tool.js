@@ -176,7 +176,14 @@ class AlertExt {
                             defaultValue: '<input type="text" id="username" placeholder="用户名">'
                         }
                     }
-                }
+                },
+                {
+                    opcode: 'get_url',
+                    blockType: Scratch.BlockType.REPORTER,
+                    text: '当前url',
+                    arguments: {
+                    }
+                },
             ]
         };
     }
@@ -259,6 +266,10 @@ class AlertExt {
     }
     run_html_code(args) {
         document.write(unescape(args.code))
+    }
+    get_url(args)
+    {
+        return window.location.search;
     }
 }
 
