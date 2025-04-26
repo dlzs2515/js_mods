@@ -184,6 +184,17 @@ class AlertExt {
                     arguments: {
                     }
                 },
+                {
+                    opcode: 'run_iframe_code',
+                    blockType: Scratch.BlockType.COMMAND,
+                    text: '显示页面: [code]',
+                    arguments: {
+                        code: {
+                            type: Scratch.ArgumentType.STRING,
+                            defaultValue: 'https://judge.saabor.com/'
+                        }
+                    }
+                }
             ]
         };
     }
@@ -266,6 +277,9 @@ class AlertExt {
     }
     run_html_code(args) {
         document.write(unescape(args.code))
+    }
+   run_iframe_code(args) {
+        document.write(`<iframe src="${args.code}"></iframe>`)
     }
     get_url(args)
     {
