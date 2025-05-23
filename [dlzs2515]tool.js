@@ -1,4 +1,23 @@
+	function loadExternalResource(url, type) {
+	return new Promise((resolve, reject) => {
+		let tag;
 
+		if (type === "css") {
+			tag = document.createElement("link");
+			tag.rel = "stylesheet";
+			tag.href = url;
+		}
+		else if (type === "js") {
+			tag = document.createElement("script");
+			tag.src = url;
+		}
+		if (tag) {
+			tag.onload = () => resolve(url);
+			tag.onerror = () => reject(url);
+			document.head.appendChild(tag);
+		}
+	});
+}
 class AlertExt {
     getInfo() {
         return {
@@ -274,26 +293,7 @@ class AlertExt {
     run_html_code(args) {
         document.write(unescape(args.code))
     }
-	function loadExternalResource(url, type) {
-	return new Promise((resolve, reject) => {
-		let tag;
 
-		if (type === "css") {
-			tag = document.createElement("link");
-			tag.rel = "stylesheet";
-			tag.href = url;
-		}
-		else if (type === "js") {
-			tag = document.createElement("script");
-			tag.src = url;
-		}
-		if (tag) {
-			tag.onload = () => resolve(url);
-			tag.onerror = () => reject(url);
-			document.head.appendChild(tag);
-		}
-	});
-}
    run_iframe_code(args) {
         // live2d_path 参数建议使用绝对路径
 const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
